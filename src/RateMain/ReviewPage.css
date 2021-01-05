@@ -1,12 +1,42 @@
-.ratingBoxRow {
+.reviewPageContainer {
+  margin: 20px auto auto 20px;
+  border: 2px solid red;
+  width: 500px;
+}
+
+.ratingBox {
+  margin: 20px auto 20px 20px;
+}
+
+.ratingBoxTitle {
   display: flex;
   flex-direction: row;
-  height: 32px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.ratingBoxPartNumber {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.ratingBoxRow {
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  height: 48px;
   align-items: center;
+  font-weight: bold;
+}
+
+.ratingbricksTitle {
+  width: 120px;
+  text-align: left;
 }
 
 .ratingbricks {
-  max-height: 25px;
   display: flex;
   flex-direction: row;
 }

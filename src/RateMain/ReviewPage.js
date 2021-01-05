@@ -1,6 +1,8 @@
 import React from "react";
 import FullBrick from "./FullBrick";
 import HalfBrick from "./HalfBrick";
+import FullStar from "./FullStar";
+import HalfStar from "./HalfStar";
 import "./ReviewPage.css";
 
 export default class ReviewPage extends React.Component {
@@ -48,7 +50,7 @@ export default class ReviewPage extends React.Component {
     });
   }
 
-  buildStars(number) {
+  buildBricks(number) {
     let stars = [];
     let i;
     for (i = 0; i < number; i++) {
@@ -57,19 +59,36 @@ export default class ReviewPage extends React.Component {
     return stars;
   }
 
-  buildHalfStar(number) {
+  buildHalfBrick(number) {
     if (number === 1) {
       return <HalfBrick />;
     }
   }
 
-  ratingStars(ratingType, fullStarNumber, halfStarNumber) {
+  buildStars(number) {
+    let stars = [];
+    let i;
+    for (i = 0; i < number; i++) {
+      stars.push(<FullStar />);
+    }
+    return stars;
+  }
+
+  buildHalfStar(number) {
+    if (number === 1) {
+      return <HalfStar />;
+    }
+  }
+
+  ratingStars(ratingType, fullStarNumber, halfStarNumber, star = 0) {
     return (
       <div className="ratingBoxRow">
-        <div>{ratingType}:</div>
+        <div className="ratingbricksTitle">{ratingType}:</div>
         <div className="ratingbricks">
-          {this.buildStars(fullStarNumber)}
-          {this.buildHalfStar(halfStarNumber)}
+          {star === 0 && this.buildBricks(fullStarNumber)}
+          {star === 0 && this.buildHalfBrick(halfStarNumber)}
+          {star === 1 && this.buildStars(fullStarNumber)}
+          {star === 1 && this.buildHalfStar(halfStarNumber)}
         </div>
       </div>
     );
@@ -95,10 +114,17 @@ export default class ReviewPage extends React.Component {
     return (
       <div className="reviewPageContainer">
         <div className="ratingBox">
-          {brandName}
-          {setId}
-          {setName}
-          {partsNumber}
+          <div className="ratingBoxTitle">
+            {brandName}
+            <span>&nbsp;&nbsp;</span>
+            {setId}
+            <span>&nbsp;&nbsp;</span>
+            {setName}
+          </div>
+          <div className="ratingBoxTitle">
+            零件数: <span>&nbsp;&nbsp;</span>
+            {partsNumber}
+          </div>
           {this.ratingStars(
             "拼装体验",
             playExperienceStar,
@@ -112,7 +138,7 @@ export default class ReviewPage extends React.Component {
           {this.ratingStars("性价比", valueOfMoneyStar, valueOfMoneyHalfStar)}
           {this.ratingStars("外观还原性", layoutStar, layoutHalfStar)}
           {this.ratingStars("细节", detailsStar, detailsHalfStar)}
-          {this.ratingStars("综合", overallRateStar, overallRateHalfStar)}
+          {this.ratingStars("综合", overallRateStar, overallRateHalfStar, 1)}
         </div>
       </div>
     );
