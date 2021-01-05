@@ -1,23 +1,18 @@
 import React from "react";
-import Select from "react-select";
-// import './NameSection.css'
-
-const options = [
-  { value: "lego", label: "Lego" },
-  { value: "cobi", label: "Cobi" }
-];
+import "./DataSection.css";
 
 export default class DataSection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedBrand: null,
-      setName: "",
+      brandName: null,
+      setName: null,
       setId: null,
-      playExperience: 0,
-      levelOfDifficulty: 0,
-      valueOfMoney: 0,
-      overallRate: 0
+      playExperience: null,
+      levelOfDifficulty: null,
+      valueOfMoney: null,
+      overallRate: null,
+      partsNumber: null
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -29,36 +24,27 @@ export default class DataSection extends React.Component {
     this.setState({ [name]: value });
   }
 
-  handleSelect = selectedOption => {
-    this.setState({ selectedOption });
-    console.log(`Option selected:`, selectedOption);
-  };
-
   render() {
     const { handleClick, error } = this.props;
     const {
       setName,
       setId,
-      selectedBrand,
+      brandName,
+      layout,
+      details,
       playExperience,
       levelOfDifficulty,
       valueOfMoney,
-      overallRate
+      overallRate,
+      partsNumber
     } = this.state;
     return (
-      <div className="nameSectionContainer">
-        <Select
-          name="selectedBrand"
-          value={selectedBrand}
-          onChange={this.handleSelect}
-          options={options}
-        />
-
+      <div className="dataSectionContainer">
         <input
-          name="setName"
+          name="brandName"
           type="text"
-          value={setName}
-          placeholder="Enter the set name here..."
+          value={brandName}
+          placeholder="Enter the brand name here..."
           onChange={this.handleChange}
         />
 
@@ -71,10 +57,26 @@ export default class DataSection extends React.Component {
         />
 
         <input
+          name="setName"
+          type="text"
+          value={setName}
+          placeholder="Enter the set name here..."
+          onChange={this.handleChange}
+        />
+
+        <input
+          name="partsNumber"
+          type="text"
+          value={partsNumber}
+          placeholder="Enter the number of parts here..."
+          onChange={this.handleChange}
+        />
+
+        <input
           name="playExperience"
           type="text"
           value={playExperience}
-          placeholder="Enter the 0 - 5 rate for the playExperience..."
+          placeholder="Enter the 0 - 10 rate for the playExperience..."
           onChange={this.handleChange}
         />
 
@@ -82,7 +84,7 @@ export default class DataSection extends React.Component {
           name="levelOfDifficulty"
           type="text"
           value={levelOfDifficulty}
-          placeholder="Enter the 0 - 5 rate for the levelOfDifficulty..."
+          placeholder="Enter the 0 - 10 rate for the levelOfDifficulty..."
           onChange={this.handleChange}
         />
 
@@ -90,7 +92,7 @@ export default class DataSection extends React.Component {
           name="valueOfMoney"
           type="text"
           value={valueOfMoney}
-          placeholder="Enter the 0 - 5 rate for the valueOfMoney..."
+          placeholder="Enter the 0 - 10 rate for the valueOfMoney..."
           onChange={this.handleChange}
         />
 
@@ -98,20 +100,39 @@ export default class DataSection extends React.Component {
           name="overallRate"
           type="text"
           value={overallRate}
-          placeholder="Enter the 0 - 5 rate for the overallRate..."
+          placeholder="Enter the 0 - 10 rate for the overallRate..."
+          onChange={this.handleChange}
+        />
+
+        <input
+          name="layout"
+          type="text"
+          value={layout}
+          placeholder="Enter the 0 - 10 rate for the layout..."
+          onChange={this.handleChange}
+        />
+
+        <input
+          name="details"
+          type="text"
+          value={details}
+          placeholder="Enter the 0 - 10 rate for the details..."
           onChange={this.handleChange}
         />
 
         <button
           onClick={() =>
             handleClick(
-              setName,
+              brandName,
               setId,
-              selectedBrand,
+              setName,
+              layout,
+              details,
               playExperience,
               levelOfDifficulty,
               valueOfMoney,
-              overallRate
+              overallRate,
+              partsNumber
             )
           }
         >

@@ -7,37 +7,46 @@ export default class RateMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      setName: "",
+      setName: null,
       setId: null,
-      selectedBrand: null,
-      playExperience: 0,
-      levelOfDifficulty: 0,
-      valueOfMoney: 0,
-      overallRate: 0,
+      brandName: null,
+      layout: null,
+      details: null,
+      playExperience: null,
+      levelOfDifficulty: null,
+      valueOfMoney: null,
+      overallRate: null,
+      partsNumber: null,
       error: false
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(
-    setName,
+    brandName,
     setId,
-    selectedBrand,
+    setName,
+    layout,
+    details,
     playExperience,
     levelOfDifficulty,
     valueOfMoney,
-    overallRate
+    overallRate,
+    partsNumber
   ) {
-    if (setName !== "" && setId !== "" && selectedBrand !== "") {
+    if (setName !== "" && setId !== "" && brandName !== "") {
       this.setState({
         showReview: true,
         setName: setName,
         setId: setId,
-        selectedBrand: selectedBrand,
+        brandName: brandName,
         overallRate: overallRate,
+        layout: layout,
+        details: details,
         playExperience: playExperience,
         levelOfDifficulty: levelOfDifficulty,
         valueOfMoney: valueOfMoney,
+        partsNumber: partsNumber,
         error: false
       });
     } else {
@@ -49,12 +58,15 @@ export default class RateMain extends React.Component {
     const {
       setName,
       setId,
-      selectedBrand,
+      brandName,
+      layout,
+      details,
       playExperience,
       levelOfDifficulty,
       valueOfMoney,
       showReview,
       overallRate,
+      partsNumber,
       error
     } = this.state;
     return (
@@ -66,11 +78,14 @@ export default class RateMain extends React.Component {
           <ReviewPage
             setName={setName}
             setId={setId}
-            selectedBrand={selectedBrand}
+            brandName={brandName}
             playExperience={playExperience}
             levelOfDifficulty={levelOfDifficulty}
             valueOfMoney={valueOfMoney}
             overallRate={overallRate}
+            layout={layout}
+            details={details}
+            partsNumber={partsNumber}
           />
         )}
       </div>

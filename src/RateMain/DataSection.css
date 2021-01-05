@@ -1,0 +1,9 @@
+.dataSectionContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dataSectionContainer > * {
+  margin: 16px auto;
+}
