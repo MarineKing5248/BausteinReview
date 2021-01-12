@@ -3,6 +3,8 @@ import FullBrick from "./FullBrick";
 import HalfBrick from "./HalfBrick";
 import FullStar from "./FullStar";
 import HalfStar from "./HalfStar";
+import EmptyStar from "./EmptyStar";
+import EmptyBrick from "./EmptyBrick";
 import "./ReviewPage.css";
 
 export default class ReviewPage extends React.Component {
@@ -65,6 +67,15 @@ export default class ReviewPage extends React.Component {
     }
   }
 
+  buildEmptyBricks(number) {
+    let stars = [];
+    let i;
+    for (i = 0; i < number; i++) {
+      stars.push(<EmptyBrick />);
+    }
+    return stars;
+  }
+
   buildStars(number) {
     let stars = [];
     let i;
@@ -80,15 +91,27 @@ export default class ReviewPage extends React.Component {
     }
   }
 
+  buildEmptyStars(number) {
+    let stars = [];
+    let i;
+    for (i = 0; i < number; i++) {
+      stars.push(<EmptyStar />);
+    }
+    return stars;
+  }
+
   ratingStars(ratingType, fullStarNumber, halfStarNumber, star = 0) {
+    const enmtyStars = 5 - fullStarNumber - halfStarNumber;
     return (
       <div className="ratingBoxRow">
         <div className="ratingbricksTitle">{ratingType}:</div>
         <div className="ratingbricks">
           {star === 0 && this.buildBricks(fullStarNumber)}
           {star === 0 && this.buildHalfBrick(halfStarNumber)}
+          {star === 0 && this.buildEmptyBricks(enmtyStars)}
           {star === 1 && this.buildStars(fullStarNumber)}
           {star === 1 && this.buildHalfStar(halfStarNumber)}
+          {star === 1 && this.buildEmptyStars(enmtyStars)}
         </div>
       </div>
     );
@@ -135,9 +158,9 @@ export default class ReviewPage extends React.Component {
             levelOfDifficultyStar,
             levelOfDifficultyHalfStar
           )}
-          {this.ratingStars("性价比", valueOfMoneyStar, valueOfMoneyHalfStar)}
           {this.ratingStars("外观还原性", layoutStar, layoutHalfStar)}
           {this.ratingStars("细节", detailsStar, detailsHalfStar)}
+          {this.ratingStars("性价比", valueOfMoneyStar, valueOfMoneyHalfStar)}
           {this.ratingStars("综合", overallRateStar, overallRateHalfStar, 1)}
         </div>
       </div>
